@@ -16,7 +16,7 @@ namespace WPUtil\Queryer;
  *     }
  *     $queryer->end();
  * }
- * 
+ *
  * Alternate usage:
  * $queryer = new Queryer([
  *     'category_name' => 'news',
@@ -30,14 +30,15 @@ class Queryer implements IteratorAggregate
     protected $options;
     protected $query;
 
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $this->options = $options;
     }
 
     public function query()
     {
-        return new WPQuery($this->options);
+        $this->query = new WPQuery($this->options);
+        return $this->query;
     }
 
     public function havePosts()
@@ -54,7 +55,7 @@ class Queryer implements IteratorAggregate
     public function end()
     {
         if (!is_null($this->query)) {
-            wp_reset_postdata();
+            $this->query->reset_postdata();
         }
         unset($this->query);
     }
