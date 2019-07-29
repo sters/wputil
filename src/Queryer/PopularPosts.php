@@ -1,5 +1,5 @@
 <?php
-namespace WPUtil\GetPost;
+namespace WPUtil\Queryer;
 
 class PopularPosts extends Queryer
 {

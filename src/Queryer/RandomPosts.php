@@ -1,5 +1,5 @@
 <?php
-namespace WPUtil\GetPost;
+namespace WPUtil\Queryer;
 
 class RandomPosts extends Queryer
 {
