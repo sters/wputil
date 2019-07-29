@@ -1,9 +1,17 @@
-version: 2
+version: 2.1
+
+orbs:
+  codecov: codecov/codecov@1.0.5
+
+executors:
+  php:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/php:latest
+
 jobs:
   build:
-    docker:
-    - image: circleci/php:latest
-    working_directory: ~/repo
+    executor: php
     steps:
     - checkout
     - restore_cache:
@@ -14,4 +22,7 @@ jobs:
         paths:
         - vendor
         key: v1-dependencies-{{ checksum "composer.lock" }}
-    - run: composer test
+    - run: composer cover
+    - codecov/upload:
+        file: ./coverage.xml
+        flags: "unittests"
