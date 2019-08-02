@@ -25,7 +25,7 @@ namespace WPUtil\Queryer;
  *     the_title();
  * }
  */
-class Queryer implements IteratorAggregate
+class Queryer implements \IteratorAggregate
 {
     protected $options;
     protected $query;
