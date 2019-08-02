@@ -14,14 +14,19 @@
     "autoload-dev": {
         "psr-4": {
             "Test\\WPUtil\\": "test/"
-        }
+        },
+        "classmap": [
+            "fake/"
+        ]
     },
     "require": {},
     "require-dev": {
-        "phpunit/phpunit": "^7.0"
+        "phpunit/phpunit": "^7.0",
+        "phpstan/phpstan": "^0.11.12"
     },
     "scripts": {
         "test": "phpunit",
-        "cover": "phpunit --coverage-clover=./coverage.xml"
+        "cover": "phpunit --coverage-clover=./coverage.xml",
+        "stan": "phpstan analyse src test"
     }
 }

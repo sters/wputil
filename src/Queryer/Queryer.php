@@ -1,6 +1,8 @@
 <?php
 namespace WPUtil\Queryer;
 
+use IteratorAggregate;
+
 /**
  * Queryer
  *
@@ -25,7 +27,7 @@ namespace WPUtil\Queryer;
  *     the_title();
  * }
  */
-class Queryer implements \IteratorAggregate
+class Queryer implements IteratorAggregate
 {
     protected $options;
     protected $query;
@@ -37,7 +39,7 @@ class Queryer implements \IteratorAggregate
 
     public function query()
     {
-        $this->query = new WPQuery($this->options);
+        $this->query = new \WP_Query($this->options);
         return $this->query;
     }
 
