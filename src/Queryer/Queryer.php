@@ -2,6 +2,7 @@
 namespace WPUtil\Queryer;
 
 use IteratorAggregate;
+use WP_Query;
 
 /**
  * Queryer
@@ -39,7 +40,7 @@ class Queryer implements IteratorAggregate
 
     public function query()
     {
-        $this->query = new \WP_Query($this->options);
+        $this->query = new WP_Query($this->options);
         return $this->query;
     }
 
