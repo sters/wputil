@@ -31,7 +31,7 @@ use WP_Query;
 class Queryer implements IteratorAggregate
 {
     protected $options;
-    protected $query;
+    protected $wpquery;
 
     public function __construct(array $options = [])
     {
@@ -40,27 +40,27 @@ class Queryer implements IteratorAggregate
 
     public function query()
     {
-        $this->query = new WP_Query($this->options);
-        return $this->query;
+        $this->wpquery = new WP_Query($this->options);
+        return $this->wpquery;
     }
 
     public function havePosts()
     {
-        return !is_null($this->query) && $this->query->have_posts();
+        return !is_null($this->wpquery) && $this->wpquery->have_posts();
     }
 
     public function thePost()
     {
-        $this->query->the_post();
-        return $this->query->post;
+        $this->wpquery->the_post();
+        return $this->wpquery->post;
     }
 
     public function end()
     {
-        if (!is_null($this->query)) {
-            $this->query->reset_postdata();
+        if (!is_null($this->wpquery)) {
+            $this->wpquery->reset_postdata();
         }
-        unset($this->query);
+        unset($this->wpquery);
     }
 
     public function getIterator()
