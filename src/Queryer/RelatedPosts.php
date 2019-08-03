@@ -5,7 +5,7 @@ use WP_Query;
 
 class RelatedPosts extends Queryer
 {
-    public function query()
+    protected function createQuery()
     {
         $tags = \wp_get_post_tags(
             $this->options['id'],

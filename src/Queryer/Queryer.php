@@ -38,9 +38,14 @@ class Queryer implements IteratorAggregate
         $this->options = $options;
     }
 
+    protected function createQuery()
+    {
+        return new WP_Query($this->options);
+    }
+
     public function query()
     {
-        $this->wpquery = new WP_Query($this->options);
+        $this->wpquery = $this->createQuery();
         return $this->wpquery;
     }
 

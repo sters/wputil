@@ -5,7 +5,7 @@ use WP_Query;
 
 class PopularPosts extends Queryer
 {
-    public function query()
+    protected function createQuery()
     {
         return new WP_Query([
             'posts_per_page' => $this->options['posts_per_page'] ?? 10,
