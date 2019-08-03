@@ -49,9 +49,34 @@ class Queryer implements IteratorAggregate
         return $this->wpquery;
     }
 
+    protected function temporaryQuery(callable $func)
+    {
+        $temporary = false;
+        if (!is_null($this->wpquery)) {
+            $this->query();
+            $temporary = true;
+        }
+
+        $result = $func();
+
+        if ($temporary) {
+            $this->end();
+        }
+        return $result;
+    }
+
+    public function maxNumPages()
+    {
+        return $this->temporaryQuery(function() {
+            return $this->wpquery->maxNumPages;
+        });
+    }
+
     public function havePosts()
     {
-        return !is_null($this->wpquery) && $this->wpquery->have_posts();
+        return $this->temporaryQuery(function() {
+            return $this->wpquery->have_posts();
+        });
     }
 
     public function thePost()
