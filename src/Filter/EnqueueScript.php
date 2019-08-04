@@ -10,8 +10,8 @@ class EnqueueScript extends Filter
             foreach ($deregisters as $deregister) {
                 wp_deregister_script($deregister);
                 wp_deregister_style($deregister);
-                wp_dequeue_script($dequeue);
-                wp_dequeue_style($dequeue);
+                wp_dequeue_script($deregister);
+                wp_dequeue_style($deregister);
             }
         };
     }
