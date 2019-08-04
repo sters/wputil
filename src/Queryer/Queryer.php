@@ -67,15 +67,17 @@ class Queryer implements IteratorAggregate
 
     public function maxNumPages()
     {
-        return $this->temporaryQuery(function() {
-            return $this->wpquery->maxNumPages;
+        $q = $this->wpquery;
+        return $this->temporaryQuery(function() use ($q) {
+            return $q->max_num_pages;
         });
     }
 
     public function havePosts()
     {
-        return $this->temporaryQuery(function() {
-            return $this->wpquery->have_posts();
+        $q = $this->wpquery;
+        return $this->temporaryQuery(function($q) {
+            return $q->have_posts();
         });
     }
 
