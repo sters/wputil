@@ -1,56 +1,34 @@
 <?php
 namespace WPUtil\JsonLd;
 
-class BlogPosting
+class BlogPosting extends Jsonizer
 {
-    public $headline;
-    public $description;
-    public $mainEntityOfPage;
-    public $datePublished;
-    public $dateModified;
-    public $author;
-    public $publisher;
-    public $image;
-
     public function __construct()
     {
-    }
-
-    public function getJson()
-    {
-        return json_encode([
-            '@context' => 'http://schema.org',
-            '@type' => 'BlogPosting',
-            'headline' => $this->headline,
-            'description' => $this->description,
-            'mainEntityOfPage' => $this->mainEntityOfPage,
-            'datePublished' => $this->datePublished,
-            'dateModified' => $this->dateModified,
-            'author' => $this->author,
-            'publisher' => $this->publisher,
-            'image' => $this->image,
-        ]);
+        $this['@context'] = 'http://schema.org';
+        $this['@type'] = 'BlogPosting';
     }
 
     static function createFromWpPost($post)
     {
         $instance = new static();
-        $instance->headline = $post->post_title;
-        $instance->description = mb_substr(strip_tags($post->post_content), 0, 140) . '...';
-        $instance->mainEntityOfPage = [
+        $instance['headline'] = $post->post_title;
+        $instance['description'] = mb_substr(strip_tags($post->post_content), 0, 140) . '...';
+        $instance['mainEntityOfPage'] = [
             '@type' => 'WebPage',
             '@id' => get_permalink($post),
         ];
-        $instance->datePublished = $post->post_date;
-        $instance->dateModified = $post->post_modified;
-        $instance->author = [
+        $instance['datePublished'] = $post->post_date;
+        $instance['dateModified'] = $post->post_modified;
+        $instance['author'] = [
             '@type' => 'Person',
             'name' => get_the_author_meta('nickname', $post->post_author),
         ];
 
         $logoUrl = get_template_directory_uri() . '/css/logo.png';
         $logoSize = getimagesize($logoUrl);
-        $instance->publisher = [
+        $instance['image'] = $logoUrl;
+        $instance['publisher'] = [
             '@type' => 'Organization',
             'name' => get_the_author_meta('nickname', $post->post_author),
             "logo" => [
@@ -60,7 +38,6 @@ class BlogPosting
                 'url' => $logoUrl,
             ],
         ];
-        $instance->image = $logoUrl;
 
         return $instance;
     }

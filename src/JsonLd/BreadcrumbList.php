@@ -1,21 +1,18 @@
 <?php
 namespace WPUtil\JsonLd;
 
-class BreadcrumbList
+class BreadcrumbList extends Jsonizer
 {
-    private $json;
-
     public function __construct()
     {
-        $this->json = [];
-        $this->json['@context'] = 'http://schema.org';
-        $this->json['@type'] = 'BreadcrumbList';
-        $this->json['itemListElement'] = [];
+        $this['@context'] = 'http://schema.org';
+        $this['@type'] = 'BreadcrumbList';
+        $this['itemListElement'] = [];
     }
 
     public function addItem($item = ['url' => '', 'name' => ''])
     {
-        $this->json['itemListElement'][] = [
+        $this['itemListElement'][] = [
             '@type' => 'ListItem',
             'position' => count($this->json['itemListElement']) + 1,
             'item' => [
@@ -23,16 +20,5 @@ class BreadcrumbList
                 'name' => $item['name'],
             ],
         ];
-    }
-
-    public function removeItem($index)
-    {
-        $this->json[$index] = null;
-        $this->json = array_filter($this->json);
-    }
-
-    public function getJson()
-    {
-        return json_encode($this->json);
     }
 }
