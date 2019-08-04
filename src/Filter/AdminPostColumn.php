@@ -28,7 +28,7 @@ class AdminPostColumn extends Filter {
             if ($columnName == $name) {
                 $hook($postId);
             }
-        });
+        }, $this->priority, 2);
 
         add_filter('admin_head', function () use ($name) {
             echo '<style type="text/css">';
