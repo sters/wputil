@@ -9,21 +9,21 @@ class WP_Query
 }
 class WP_REST_Request
 {
-    public function __construct($a)
+    public function __construct($a=null)
     {
         error_log('this is fake.');
     }
 }
 
-function wp_get_post_tags($a, $b)
+function wp_get_post_tags($a=null, $b=null)
 {
     error_log('this is fake.');
 }
-function get_permalink($a)
+function get_permalink($a=null)
 {
     error_log('this is fake.');
 }
-function get_the_author_meta($a, $b)
+function get_the_author_meta($a=null, $b=null)
 {
     error_log('this is fake.');
 }
@@ -31,71 +31,71 @@ function get_template_directory_uri()
 {
     error_log('this is fake.');
 }
-function add_action($a, $b)
+function add_action($a=null, $b=null)
 {
     error_log('this is fake.');
 }
-function register_rest_route($a, $b, $c)
+function register_rest_route($a=null, $b=null, $c=null)
 {
     error_log('this is fake.');
 }
-function add_filter($a, $b, $c = null, $d = null)
+function add_filter($a=null, $b=null, $c = null, $d = null)
 {
     error_log('this is fake.');
 }
-function remove_filter($a, $b)
+function remove_filter($a=null, $b=null)
 {
     error_log('this is fake.');
 }
-function wp_deregister_script($a)
+function wp_deregister_script($a=null)
 {
     error_log('this is fake.');
 }
-function wp_deregister_style($a)
+function wp_deregister_style($a=null)
 {
     error_log('this is fake.');
 }
-function wp_dequeue_script($a)
+function wp_dequeue_script($a=null)
 {
     error_log('this is fake.');
 }
-function wp_dequeue_style($a)
+function wp_dequeue_style($a=null)
 {
     error_log('this is fake.');
 }
-function attribute_escape($a)
+function attribute_escape($a=null)
 {
     error_log('this is fake.');
 }
-function wp_get_archives($a)
+function wp_get_archives($a=null)
 {
     error_log('this is fake.');
 }
-function paginate_links($a)
+function paginate_links($a=null)
 {
     error_log('this is fake.');
 }
-function get_categories($a)
+function get_categories($a=null)
 {
     error_log('this is fake.');
 }
-function get_terms($a, $b)
+function get_terms($a=null, $b=null)
 {
     error_log('this is fake.');
 }
 
-function esc_html($a) {
+function esc_html($a=null) {
     error_log('this is fake.');
 }
-function get_post_meta($a, $b, $c) {
+function get_post_meta($a=null, $b=null, $c=null) {
     error_log('this is fake.');
 }
-function delete_post_meta($a, $b) {
+function delete_post_meta($a=null, $b=null) {
     error_log('this is fake.');
 }
-function add_post_meta($a, $b, $c) {
+function add_post_meta($a=null, $b=null, $c=null) {
     error_log('this is fake.');
 }
-function update_post_meta($a, $b, $c) {
+function update_post_meta($a=null, $b=null, $c=null) {
     error_log('this is fake.');
 }
