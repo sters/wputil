@@ -27,6 +27,6 @@
     "scripts": {
         "test": "phpunit",
         "cover": "phpunit --coverage-clover=./coverage.xml",
-        "stan": "phpstan analyse src test"
+        "stan": "phpstan analyse fake src test"
     }
 }
