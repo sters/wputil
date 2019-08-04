@@ -83,3 +83,19 @@ function get_terms($a, $b)
 {
     error_log('this is fake.');
 }
+
+function esc_html($a) {
+    error_log('this is fake.');
+}
+function get_post_meta($a, $b, $c) {
+    error_log('this is fake.');
+}
+function delete_post_meta($a, $b) {
+    error_log('this is fake.');
+}
+function add_post_meta($a, $b, $c) {
+    error_log('this is fake.');
+}
+function update_post_meta($a, $b, $c) {
+    error_log('this is fake.');
+}

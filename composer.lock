@@ -4,8 +4,53 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0c1949c70aec267e43f51d2b4ab03ad0",
-    "packages": [],
+    "content-hash": "7a3eb436c6dcd72b75a37e3061aab12b",
+    "packages": [
+        {
+            "name": "sters/mikan.php",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sters/mikan.php.git",
+                "reference": "019bd82981166105805c148a38737cc94aab7ea8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sters/mikan.php/zipball/019bd82981166105805c148a38737cc94aab7ea8",
+                "reference": "019bd82981166105805c148a38737cc94aab7ea8",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.6",
+                "squizlabs/php_codesniffer": "^3.0@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mikan\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "sters"
+                }
+            ],
+            "description": "Resolve method of Japanese line break problem",
+            "homepage": "https://github.com/sters/mikan.php",
+            "keywords": [
+                "japanese",
+                "mikan.js"
+            ],
+            "time": "2018-07-10T01:12:38+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "composer/xdebug-handler",
