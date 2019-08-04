@@ -100,7 +100,7 @@ class Queryer implements IteratorAggregate
             while ($this->havePosts()) {
                 yield $this->thePost();
             }
-            $this->end();
         }
+        $this->end();
     }
 }
