@@ -68,6 +68,9 @@ class Queryer implements IteratorAggregate
     public function maxNumPages()
     {
         return $this->temporaryQuery(function($q) {
+            if (empty($q)) {
+                return 0;
+            }
             return $q->max_num_pages;
         });
     }
@@ -75,6 +78,9 @@ class Queryer implements IteratorAggregate
     public function havePosts()
     {
         return $this->temporaryQuery(function($q) {
+            if (empty($q)) {
+                return false;
+            }
             return $q->have_posts();
         });
     }
