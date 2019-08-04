@@ -52,12 +52,12 @@ class Queryer implements IteratorAggregate
     protected function temporaryQuery(callable $func)
     {
         $temporary = false;
-        if (!is_null($this->wpquery)) {
+        if (is_null($this->wpquery)) {
             $this->query();
             $temporary = true;
         }
 
-        $result = $func();
+        $result = $func($this->wpquery);
 
         if ($temporary) {
             $this->end();
@@ -67,15 +67,13 @@ class Queryer implements IteratorAggregate
 
     public function maxNumPages()
     {
-        $q = $this->wpquery;
-        return $this->temporaryQuery(function() use ($q) {
+        return $this->temporaryQuery(function($q) {
             return $q->max_num_pages;
         });
     }
 
     public function havePosts()
     {
-        $q = $this->wpquery;
         return $this->temporaryQuery(function($q) {
             return $q->have_posts();
         });
