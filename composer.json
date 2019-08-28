@@ -29,6 +29,7 @@
     "scripts": {
         "test": "phpunit",
         "cover": "phpunit --coverage-clover=./coverage.xml",
-        "stan": "phpstan analyse fake src test"
+        "stan": "phpstan analyse fake src test",
+        "lint": "find . -type d -name vendor -prune -o -type f -iname '*.php' -exec php -l '{}' \\;"
     }
 }
