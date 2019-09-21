@@ -51,7 +51,11 @@ class Queryer implements IteratorAggregate
 
     protected function temporaryQuery(callable $func)
     {
-        $q = new static(clone $this->options);
+        if (!empty($this->wpquery)) {
+            return $this->wpquery;
+        }
+
+        $q = new static($this->options);
         $result = $func($q->query());
         $q->end();
         return $result;
