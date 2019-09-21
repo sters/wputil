@@ -54,9 +54,9 @@ class Queryer implements IteratorAggregate
         $temporary = false;
         if (empty($this->wpquery)) {
             $this->query();
+            $this->thePost(); // dummy
             $temporary = true;
         }
-        $this->thePost(); // dummy
         $result = $func($this->wpquery);
         if ($temporary) {
             $this->end();
