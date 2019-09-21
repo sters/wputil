@@ -32,6 +32,7 @@ class Queryer implements IteratorAggregate
 {
     protected $options;
     protected $wpquery;
+    protected $lastPost;
 
     public function __construct(array $options = [])
     {
@@ -45,6 +46,7 @@ class Queryer implements IteratorAggregate
 
     public function query()
     {
+        $this->lastPost = $GLOBALS['post'];
         $this->wpquery = $this->createQuery();
         return $this->wpquery;
     }
@@ -54,7 +56,6 @@ class Queryer implements IteratorAggregate
         $temporary = false;
         if (empty($this->wpquery)) {
             $this->query();
-            $this->thePost(); // dummy
             $temporary = true;
         }
         $result = $func($this->wpquery);
@@ -66,26 +67,25 @@ class Queryer implements IteratorAggregate
 
     public function maxNumPages()
     {
-        return $this->temporaryQuery(function($q) {
-            if (empty($q)) {
-                return 0;
-            }
-            return $q->max_num_pages;
-        });
+        if (empty($this->wpquery)) {
+            $this->query();
+        }
+        return $this->wpquery->max_num_pages;
     }
 
     public function havePosts()
     {
-        return $this->temporaryQuery(function($q) {
-            if (empty($q)) {
-                return false;
-            }
-            return $q->have_posts();
-        });
+        if (empty($this->wpquery)) {
+            $this->query();
+        }
+        return $this->wpquery->have_posts();
     }
 
     public function thePost()
     {
+        if (empty($this->wpquery)) {
+            $this->query();
+        }
         $this->wpquery->the_post();
         return $this->wpquery->post;
     }
@@ -94,13 +94,19 @@ class Queryer implements IteratorAggregate
     {
         if (!is_null($this->wpquery)) {
             $this->wpquery->reset_postdata();
+            $GLOBALS['post'] = $this->lastPost;
         }
-        unset($this->wpquery);
+        unset(
+            $this->wpquery,
+            $this->lastPost
+        );
     }
 
     public function getIterator()
     {
-        $this->query();
+        if (empty($this->wpquery)) {
+            $this->query();
+        }
         if ($this->havePosts()) {
             while ($this->havePosts()) {
                 yield $this->thePost();
