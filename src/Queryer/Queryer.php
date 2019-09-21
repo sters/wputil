@@ -45,7 +45,6 @@ class Queryer implements IteratorAggregate
 
     public function query()
     {
-        echo '<!-- start ' . static::class . ' -->';
         $this->wpquery = $this->createQuery();
         return $this->wpquery;
     }
@@ -97,7 +96,6 @@ class Queryer implements IteratorAggregate
             $this->wpquery->reset_postdata();
         }
         unset($this->wpquery);
-        echo '<!-- end ' . static::class . ' -->';
     }
 
     public function getIterator()
