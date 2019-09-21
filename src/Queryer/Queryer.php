@@ -45,19 +45,22 @@ class Queryer implements IteratorAggregate
 
     public function query()
     {
+        echo '<!-- start ' . static::class . ' -->';
         $this->wpquery = $this->createQuery();
         return $this->wpquery;
     }
 
     protected function temporaryQuery(callable $func)
     {
-        if (!empty($this->wpquery)) {
-            return $this->wpquery;
+        $temporary = false;
+        if (empty($this->wpquery)) {
+            $this->query();
+            $temporary = true;
         }
-
-        $q = new static($this->options);
-        $result = $func($q->query());
-        $q->end();
+        $result = $func($this->wpquery);
+        if ($temporary) {
+            $this->end();
+        }
         return $result;
     }
 
@@ -93,6 +96,7 @@ class Queryer implements IteratorAggregate
             $this->wpquery->reset_postdata();
         }
         unset($this->wpquery);
+        echo '<!-- end ' . static::class . ' -->';
     }
 
     public function getIterator()
