@@ -51,7 +51,7 @@ class Queryer implements IteratorAggregate
 
     protected function temporaryQuery(callable $func)
     {
-        $q = new static($this->options);
+        $q = new static(clone $this->options);
         $result = $func($q->query());
         $q->end();
         return $result;
