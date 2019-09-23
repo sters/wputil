@@ -13,14 +13,22 @@ class Bulk extends Filter
 
     public function add()
     {
-        foreach ($this->functions as $func) {
-            add_filter($this->name, $func);
+        foreach ($this->functions as $func => $priority) {
+            if (!function_exists($func)) {
+                $func = $priority;
+                $priority = 10;
+            }
+            add_filter($this->name, $func, $priority);
         }
     }
 
     public function remove()
     {
-        foreach ($this->functions as $func) {
+        foreach ($this->functions as $func => $priority) {
+            if (!function_exists($func)) {
+                $func = $priority;
+                $priority = 10;
+            }
             remove_filter($this->name, $func);
         }
     }
