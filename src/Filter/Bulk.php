@@ -29,7 +29,7 @@ class Bulk extends Filter
                 $func = $priority;
                 $priority = 10;
             }
-            remove_filter($this->name, $func);
+            remove_filter($this->name, $func, $priority);
         }
     }
 }
