@@ -1,7 +1,7 @@
 <?php
 namespace WPUtil\Filter;
 
-class RemoveThumbnailSize extends Filter
+class DisableFeedVersion extends Filter
 {
     protected $fields = [
         'rss2_head',
