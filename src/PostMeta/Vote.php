@@ -1,5 +1,5 @@
 <?php
-namespace WPUtil\PostMetaIncrementer;
+namespace WPUtil\PostMeta;
 
 class Vote extends Incrementer
 {

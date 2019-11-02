@@ -1,5 +1,5 @@
 <?php
-namespace WPUtil\PostMetaIncrementer;
+namespace WPUtil\PostMeta;
 
 class View extends Incrementer
 {
