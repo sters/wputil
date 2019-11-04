@@ -15,7 +15,9 @@ class RelatedPosts extends Queryer
             return null;
         }
 
-        array_pop($tags);
+        if (count($tags) >= 2) {
+            array_pop($tags);
+        }
         $tags = array_map(function ($tag) {
             return $tag->term_id;
         }, $tags);
